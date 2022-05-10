@@ -1,4 +1,4 @@
-name: Gradle publish
+name: Gradle create github release
 
 on:
   workflow_call:
