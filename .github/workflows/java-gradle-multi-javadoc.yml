@@ -23,15 +23,15 @@ jobs:
         run: './gradlew javadoc'
       - name: shell
         run: |
-          mkdir ./javadocs
+          mkdir ./javadoc
           IFS='
           '
           projects="${{ inputs.projects }}"
           for project in $projects; do
-            cp -r "$project/build/docs/javadoc" ./javadocs
+            cp -r "$project/build/docs/javadoc" "./javadoc/$project"
           done
       - name: Deploy github pages
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
           branch: javadocs
-          folder: ./javadocs
+          folder: javadoc
