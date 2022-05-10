@@ -3,9 +3,9 @@ name: Gradle publish
 on:
   workflow_call:
     inputs:
-      javadoc_path:
-        description: 'path to javadocs'
-        default: 'api/build/docs/javadoc'
+      directories:
+        description: 'directories to different javadocs'
+        default: 'build/docs/javadoc'
         required: false
         type: string
 
@@ -21,8 +21,12 @@ jobs:
           distribution: 'temurin'
       - name: Generate javadoc
         run: './gradlew javadoc'
+      - name: shell
+        run: |
+          mkdir ./javadocs
+          cp -r ${{ inputes.directories }} ./javadocs
       - name: Deploy github pages
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
           branch: javadocs
-          folder: ${{ inputs.javadoc_path }}
+          folder: ./javadocs
