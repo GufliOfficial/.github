@@ -24,7 +24,10 @@ jobs:
       - name: shell
         run: |
           mkdir ./javadocs
-          for project in "${{ inputs.projects }}"; do
+          IFS='
+          '
+          projects="${{ inputs.projects }}"
+          for project in $projects; do
             cp -r "$project/build/docs/javadoc" ./javadocs
           done
       - name: Deploy github pages
