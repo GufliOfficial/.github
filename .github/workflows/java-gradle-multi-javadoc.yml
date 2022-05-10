@@ -1,4 +1,4 @@
-name: Gradle publish
+name: Gradle generate and publish multi-project javadocs
 
 on:
   workflow_call:
