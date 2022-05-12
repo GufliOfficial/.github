@@ -5,9 +5,7 @@ on:
     inputs:
       files:
         description: 'globs of files to include in release'
-        default: |
-            build/libs/*.jar
-            app/build/libs/*.jar
+        default: build/libs/*.jar
         required: false
         type: string
 
@@ -21,6 +19,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          fetch-depth: '0'
       - name: Build with Gradle
         run: './gradlew shadowJar'
       - uses: "marvinpinto/action-automatic-releases@latest"
