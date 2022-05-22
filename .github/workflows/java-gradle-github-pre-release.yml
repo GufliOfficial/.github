@@ -1,13 +1,13 @@
-name: Gradle create github release
+name: Gradle create github pre-release
 
 on:
   workflow_call:
     inputs:
       files:
-        description: 'globs of files to include in release'
+        description: 'globs of files to include in pre-release'
         default: build/libs/*.jar
         required: false
-        type: string
+        type: 'string'
 
 jobs:
   pre-release:
@@ -25,5 +25,7 @@ jobs:
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: false
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
           files: ${{ inputs.files }}
