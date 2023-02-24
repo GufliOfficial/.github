@@ -15,5 +15,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Test with Gradle
-        run: './gradlew test'
+      - name: Gradle Test
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: test
